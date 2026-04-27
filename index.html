@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>手部挤压 GIF 生成器</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <main class="app">
+    <header class="app-header">
+      <p class="eyebrow">Pure Frontend GIF Tool</p>
+      <h1>手部挤压 GIF 表情生成器</h1>
+      <p class="desc">上传一张图片，自动套用 9 帧手部模板并导出透明背景 GIF。</p>
+    </header>
+
+    <section class="panel controls">
+      <label class="upload-area" id="dropZone" for="fileInput">
+        <input id="fileInput" type="file" accept="image/*" />
+        <span class="upload-title">点击或拖拽上传图片</span>
+        <span class="upload-sub">支持 png / jpg / webp，全部在本地处理</span>
+      </label>
+
+      <div class="row">
+        <label for="speedMode">速度模式</label>
+        <select id="speedMode">
+          <option value="fast">快速（10 ms）</option>
+          <option value="normal" selected>普通（30 ms）</option>
+          <option value="slow">慢速（90 ms）</option>
+        </select>
+      </div>
+
+      <div class="actions">
+        <button id="generateBtn" type="button">生成 GIF</button>
+        <button id="downloadBtn" type="button" disabled>下载 GIF</button>
+      </div>
+
+      <div class="progress-wrap">
+        <progress id="progressBar" value="0" max="100"></progress>
+        <p id="statusText">等待上传图片...</p>
+      </div>
+    </section>
+
+    <section class="panel preview">
+      <div class="preview-block">
+        <h2>实时预览</h2>
+        <div class="checkerboard">
+          <canvas id="previewCanvas" width="520" height="520"></canvas>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <h2>导出结果</h2>
+        <div class="checkerboard result-box">
+          <img id="resultGif" alt="GIF 导出结果预览" />
+          <p id="resultHint">生成后将显示在这里</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="gif.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
